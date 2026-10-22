@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Link Generator - Free WA.me Link Maker SA</title>
+<meta name="description" content="Create free WhatsApp link for your business. Make wa.me link in 2 seconds. No signup. Works in South Africa.">
+<style>
+body{font-family:sans-serif;background:#f0fdf4;margin:0;padding:20px;display:flex;justify-content:center}
+.box{background:white;max-width:500px;width:100%;padding:30px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+h1{color:#128C7E;text-align:center}
+input,textarea{width:100%;padding:14px;margin:10px 0;border:2px solid #e5e7eb;border-radius:10px;font-size:16px;box-sizing:border-box}
+button{width:100%;background:#25D366;color:white;border:0;padding:16px;border-radius:10px;font-size:18px;font-weight:bold;cursor:pointer}
+button:hover{background:#128C7E}
+#result{margin-top:20px;background:#f9fafb;padding:15px;border-radius:10px;display:none;word-break:break-all}
+.how{margin-top:30px;font-size:14px;color:#555;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>WhatsApp Link Generator</h1>
+<p style="text-align:center;color:#666">Make a click-to-chat link for your business. Free, no signup.</p>
+
+<input id="phone" type="tel" placeholder="Enter WhatsApp number e.g. 0781234567">
+<textarea id="msg" placeholder="Optional message e.g. Hi, I want to order"></textarea>
+<button onclick="makeLink()">Generate My Link</button>
+
+<div id="result"></div>
+
+<div class="how">
+<h3>How it works:</h3>
+<p>1. Enter your WhatsApp number (we convert 07... to 27... automatically)<br>
+2. Add a pre-filled message if you want<br>
+3. Click Generate and copy your wa.me link<br>
+4. Put it on your Facebook, Instagram, TikTok bio, poster<br>
+When customers click, they chat you directly. No need to save number. This helps small businesses get more orders.</p>
+<p><b>Safe:</b> We don't save your number. Everything happens on your phone.</p>
+</div>
+</div>
+
+<script>
+function makeLink(){
+ let p = document.getElementById('phone').value.replace(/\D/g,'');
+ if(p.startsWith('0')) p = '27' + p.substring(1);
+ if(p.startsWith('27')==false && p.length==9) p = '27' + p;
+ if(!p){alert('Enter number');return;}
+ let m = document.getElementById('msg').value;
+ let link = 'https://wa.me/' + p + (m ? '?text='+encodeURIComponent(m) : '');
+ document.getElementById('result').style.display='block';
+ document.getElementById('result').innerHTML = `<b>Your Magic Link:</b><br><br><a href="${link}" target="_blank">${link}</a><br><br><button onclick="navigator.clipboard.writeText('${link}');alert('Copied!')">Copy Link</button> <a href="${link}" target="_blank"><button style="background:#128C7E;margin-top:10px">Test Link</button></a>`;
+}
+</script>
+</body>
+</html>
